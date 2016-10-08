@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute'])
 		});
 	}])
 
-	.controller('View1Ctrl', ['$scope', '$location', function ($scope, $location) {
+	.controller('View1Ctrl', ['$scope', '$location','$http', function ($scope, $location,$http) {
 		var userData = window.localStorage['user'];
 		if (!userData) {
 			$location.path("/view2");
@@ -19,6 +19,7 @@ angular.module('myApp.view1', ['ngRoute'])
 		var mainString = " ناموا في أحضان والديهم ولم يستيقظوا ومن بقي على قيد الحياة كاد قهره يقتله ليلعن العالم أجمع بلا إستثناء في ذلك اليوم كانت الجثث مترامية على مدى البصر في كل ثانية تلقى جثة برقم مجهولة في الارض معروفة في السماء لفناء عائلات بأكملها كان كرنفالا وحشيا أقصى ما صنعه أنه تسبب بقلق أممي لم يكن يرقى لحجم المأساة التي وقعت فتتالت اللعنات على صانعي الحقوق والمبادىء المزعومة بعد موقفهم الاستنكاري ليبقى مبدأنا هو الباقي لزوال شيء";
 		$scope.text = mainString.split(' ');
 		$scope.selected = {};
+		$scope.idea='الفكرة';
 		$scope.select = function (index) {
 			if ($scope.selected[index]) {
 				delete $scope.selected[index];
@@ -27,7 +28,23 @@ angular.module('myApp.view1', ['ngRoute'])
 				$scope.selected[index] = true;
 			}
 		};
+		$scope.saveData = function () {
+			var dataToDb = {userData: angular.fromJson(userData),selected:$scope.selected,text:$scope.text,idea:$scope.idea};
 
+
+			$http.post('http://192.168.1.16:3000/api/model',
+				{data:dataToDb}
+				, {
+					headers: {
+						"Content-Type":"application/json"
+					}
+				}).success(function (data) {
+					$scope.selected={};
+				$scope.idea='الفكرة';
+			}).error(function (msg, code) {
+				//   $log.error(msg, code);
+			});
+		}
 		$scope.isSelected = function (index) {
 			if ($scope.selected[index]) {
 				return 'red'
