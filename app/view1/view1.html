@@ -1,0 +1,15 @@
+<div style="text-align: center;margin-top: 10px;">
+    <textarea  class="form-control" rows="3" style="width: 80%;margin: 0 auto; text-align: center"> الفكرة </textarea>
+    <button type="button" class="  btn btn-primary">حفظ</button>
+</div>
+<div class="row" style="direction: rtl;text-align: center">
+
+    <div class="col-xs-1 col-md-2">
+    </div>
+    <div class="col-xs-10 col-md-8" style="font-size: 2em;">
+                <span ng-repeat="word in text track by $index" ng-style="{'background-color':isSelected($index)}"
+                      ng-click="select($index)">{{word+' '}}</span>
+    </div>
+    <div class="col-xs-1 col-md-2">
+    </div>
+</div>
