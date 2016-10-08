@@ -9,6 +9,13 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
-
+.controller('View2Ctrl', ['$scope','$location',function($scope,$location) {
+  $scope.userData={name:'',email:''}
+  $scope.saveUser=function () {
+    if($scope.userData.name&&$scope.userData.name!=''&&$scope.userData.email&&$scope.userData.email!='')
+    {
+      window.localStorage['user']=angular.toJson($scope.userData);
+      $location.path( "/view1" );
+    }
+  }
 }]);
