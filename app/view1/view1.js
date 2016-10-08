@@ -32,7 +32,7 @@ angular.module('myApp.view1', ['ngRoute'])
 			var dataToDb = {userData: angular.fromJson(userData),selected:$scope.selected,text:$scope.text,idea:$scope.idea};
 
 
-			$http.post('http://192.168.1.16:3000/api/model',
+			$http.post('https://echochrome.herokuapp.com/api/model',
 				{data:dataToDb}
 				, {
 					headers: {
