@@ -15,9 +15,13 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.8",
     "karma-junit-reporter": "^0.4.1",
-    "protractor": "^3.2.2"
+    "protractor": "^3.2.2",
+    "cookie-parser": "^1.4.3",
+    "mongoose": "^4.6.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+
+  },
   "scripts": {
     "prestart": "npm install&&bower install",
     "test": "echo \"Error: no test specified\" && exit 1",
